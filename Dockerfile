@@ -14,6 +14,7 @@ RUN chown -R www-data:www-data /app
 # Configure OpenSSH
 ADD start-ssh.sh /start-ssh.sh
 RUN chmod 755 /start-ssh.sh
+RUN sed -i s/without-password/yes/g /etc/ssh/sshd_config
 ADD supervisord-ssh.conf /etc/supervisor/conf.d/supervisord-ssh.conf
 
 EXPOSE 22 80 3306
